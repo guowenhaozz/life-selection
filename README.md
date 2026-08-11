@@ -143,6 +143,3 @@ Copy-Item src/main/resources/application-local.example.yaml src/main/resources/a
 
 发布性能数字前至少记录：测试机器配置、并发用户数、持续时间、吞吐量、P95/P99 延迟、HTTP 错误率、业务拒绝率、MQ 峰值积压、最终订单数、剩余库存和重复订单数。
 
-## 来源说明
-
-本项目是在 [KNeegcyao/dianping](https://github.com/KNeegcyao/dianping) 学习项目基础上的二次开发版本。仓库中的 RabbitMQ 秒杀链路、配置安全化和相关工程改造由本仓库维护者继续完成。使用、展示或再发布时请同时核验上游项目与第三方资源的授权条件。
