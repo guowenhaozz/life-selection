@@ -1,4 +1,4 @@
-# 生活优选（黑马点评二次开发）
+# 生活优选
 
 > 本项目基于 [KNeegcyao/dianping](https://github.com/KNeegcyao/dianping) 学习源码进行二次开发，用于学习 Spring Boot、Redis、RabbitMQ 和高并发秒杀业务。
 
