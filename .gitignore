@@ -35,6 +35,7 @@ build/
 ### Local load-test credentials ###
 src/main/resources/tokens.txt
 src/main/resources/one-token.txt
+src/test/java/com/hmdp/tokens.txt
 
 ### Local runtime configuration ###
 src/main/resources/application-local.yaml
