@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Local load-test credentials ###
+src/main/resources/tokens.txt
+src/main/resources/one-token.txt
+
+### Local runtime configuration ###
+src/main/resources/application-local.yaml

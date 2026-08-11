@@ -1,4 +1,32 @@
-# 简历上展示黑马点评
+# 生活优选（黑马点评二次开发）
+
+> 本项目基于 [KNeegcyao/dianping](https://github.com/KNeegcyao/dianping) 学习源码进行二次开发，用于学习 Spring Boot、Redis、RabbitMQ 和高并发秒杀业务。
+
+## 本仓库改造内容
+
+- 将优惠券秒杀流程接入 RabbitMQ：Redis Lua 脚本完成库存与一人一单预校验，订单再异步写入 MySQL。
+- 配置正常交换机/队列、消息 TTL 和死信交换机/队列，便于观察消息处理与异常链路。
+- 增加消息发送确认、消费者重试、并发消费者等 RabbitMQ 基础可靠性配置。
+- 将本机数据库密码移出公开配置；克隆后请按下方步骤创建本地配置文件。
+
+## 本地运行
+
+1. 准备 JDK 8、MySQL、Redis、RabbitMQ 和 Nginx。
+2. 导入 `src/main/resources/db/hmdp.sql`，并在 MySQL 中创建 `hmdp` 数据库。
+3. 将 `src/main/resources/application-local.example.yaml` 复制为 `application-local.yaml`，填写本机 MySQL 密码。该本地文件不会提交到 Git。
+4. 启动 Redis（默认端口 `6379`）和 RabbitMQ（默认端口 `5672`）。
+5. 在 IDEA 中启动 `HmDianPingApplication`，后端默认端口为 `8081`。
+6. 使用 Nginx 托管 `nginx-1.18.0/html/hmdp`，并将 `/api` 代理到 `127.0.0.1:8081`。
+
+## 项目来源与说明
+
+- 上游学习项目：[KNeegcyao/dianping](https://github.com/KNeegcyao/dianping)
+- 本仓库保留上游 Git 历史，并记录当前环境配置和二次开发改动。
+- 该项目仅用于学习与作品展示；使用前请自行核验上游仓库的授权条件和第三方资源版权。
+
+---
+
+# 原项目学习笔记
 
 ## 项目描述
 

@@ -1,32 +1,56 @@
-  server:
-    port: 8081
-  spring:
-    rabbitmq:
-      host: localhost
-      port: 5672
-      username: guest
-      password: guest
-    application:
-      name: hmdp
-    datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/dingping?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      username: root
-      password: 290390
-    redis:
-      host: 127.0.0.1
-      port: 6379
+server:
+  port: ${SERVER_PORT:8081}
 
-      lettuce:
-        pool:
-          max-active: 30
-          max-idle: 15
-          min-idle: 5
-          time-between-eviction-runs: 10s
-    jackson:
-      default-property-inclusion: non_null # JSON处理时忽略非空字段
-  mybatis-plus:
-    type-aliases-package: com.hmdp.entity # 别名扫描包
-  logging:
-    level:
-      com.hmdp: debug
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: auto
+        prefetch: 20
+        concurrency: 2
+        max-concurrency: 4
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 500ms
+          max-attempts: 3
+          multiplier: 2
+          max-interval: 2s
+  application:
+    name: hmdp
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL:jdbc:mysql://127.0.0.1:3306/hmdp?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:}
+
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    lettuce:
+      pool:
+        max-active: 30
+        max-idle: 15
+        min-idle: 5
+        time-between-eviction-runs: 10s
+
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  type-aliases-package: com.hmdp.entity
+
+logging:
+  level:
+    com.hmdp: debug

@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    # Copy this file to application-local.yaml and fill in your local password.
+    password: your_mysql_password
