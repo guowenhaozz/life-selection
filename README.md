@@ -128,7 +128,3 @@ Copy-Item src/main/resources/application-local.example.yaml src/main/resources/a
 - 该构建验证不替代 Redis、MySQL、RabbitMQ 联调，也不替代秒杀链路端到端测试。
 - 当前仓库没有正式压测报告，因此不声明 QPS、P95、P99 或最大并发等性能数字。
 - 后续压测应记录机器配置、并发阶梯、吞吐量、延迟分位数、错误率、MQ 峰值积压、订单数、库存和重复订单数。
-
-## 来源
-
-本项目基于 [KNeegcyao/dianping](https://github.com/KNeegcyao/dianping) 学习项目继续开发；本仓库维护 RabbitMQ 秒杀链路、配置安全化和相关工程改造。使用或再发布前请核验上游与第三方资源的授权条件。
