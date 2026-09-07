@@ -54,3 +54,14 @@ mybatis-plus:
 logging:
   level:
     com.hmdp: debug
+
+hmdp:
+  order-reliability:
+    enabled: ${ORDER_RELIABILITY_ENABLED:true}
+    admin-enabled: ${ORDER_RELIABILITY_ADMIN_ENABLED:false}
+    admin-user-ids: ${ORDER_RELIABILITY_ADMIN_USER_IDS:0}
+    reconcile-batch-size: ${ORDER_RELIABILITY_RECONCILE_BATCH_SIZE:100}
+    reconcile-fixed-delay-ms: ${ORDER_RELIABILITY_RECONCILE_FIXED_DELAY_MS:30000}
+    reconcile-timeout-seconds: ${ORDER_RELIABILITY_RECONCILE_TIMEOUT_SECONDS:60}
+    dead-letter-batch-size: ${ORDER_RELIABILITY_DEAD_LETTER_BATCH_SIZE:100}
+    dead-letter-fixed-delay-ms: ${ORDER_RELIABILITY_DEAD_LETTER_FIXED_DELAY_MS:5000}

@@ -2,7 +2,10 @@ package com.hmdp.controller;
 
 
 import com.hmdp.dto.Result;
+import com.hmdp.service.OrderReliabilityService;
 import com.hmdp.service.IVoucherOrderService;
+import com.hmdp.utils.UserHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +26,15 @@ import javax.annotation.Resource;
 public class VoucherOrderController {
     @Resource
     private IVoucherOrderService voucherOrderService;
+    @Resource
+    private OrderReliabilityService orderReliabilityService;
     @PostMapping("seckill/{id}")
     public Result seckillVoucher(@PathVariable("id") Long voucherId) {
         return voucherOrderService.seckillVoucher(voucherId);
+    }
+
+    @GetMapping("/{id}/status")
+    public Result status(@PathVariable("id") Long orderId) {
+        return orderReliabilityService.queryStatus(orderId, UserHolder.getUser().getId());
     }
 }
