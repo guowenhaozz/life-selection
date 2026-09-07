@@ -143,8 +143,39 @@ Copy-Item src/main/resources/application-local.example.yaml src/main/resources/a
 - 已使用 JDK 8 运行 `mvn -o -DskipTests package` 完成离线打包验证。
 - 可靠性单测覆盖状态转换、重复恢复请求、迟到消息、数据库库存失败和发布结果分类；Redis 生命周期测试已在本机 `127.0.0.1:6379` 验证预扣留痕与幂等回补。
 - 该构建验证不替代 Redis、MySQL、RabbitMQ 联调，也不替代秒杀链路端到端测试。
-- 当前仓库仍不声明 QPS、P95、P99 或最大并发等性能数字；JMeter 脚本和原始 `.jtl`、HTML 报告必须一起归档后，才能支持简历中的具体数字。
-- 压测执行方法、异步最终结果核验和证据目录见 [`docs/load-test/README.md`](docs/load-test/README.md)。
+## 压测报告
+
+本轮为本机单实例、专用优惠券数据上的库存边界测试，报告同时保留 JMeter 原始采样和异步订单最终核验结果。它用于复现和面试说明，不代表生产环境容量。
+
+| 指标 | 结果 |
+| --- | --- |
+| 测试对象 | `voucher_id=22`，初始库存 100 |
+| 测试用户 | 1000 个独立用户，每人请求 1 次 |
+| 升压策略 | 30 秒升压窗口 |
+| JMeter 总采样数 | 1000 |
+| HTTP 200 | 1000 |
+| 业务成功 | 100 |
+| 库存不足 | 900 |
+| 全部请求平均耗时 | 598.76 ms |
+| 全部请求 P95 / P99 | 4291.95 ms / 5238.78 ms |
+| 全部请求吞吐量 | 34.7379 req/s |
+
+900 次断言失败对应库存不足的业务结果，不是 HTTP 服务异常；接口 HTTP 状态仍为 200。异步处理完成后，MySQL 最终订单数为 100，Redis 与 MySQL 剩余库存均为 0，重复订单数为 0，RabbitMQ 主队列未确认消息和死信消息均为 0。
+
+详细执行步骤、SQL 核验口径和全部证据文件见 [`docs/load-test/README.md`](docs/load-test/README.md)：
+
+- [JMeter 脚本](docs/load-test/reports/seckill-v22-1000-boundary/seckill-v22-1000.jmx)
+- [原始 JTL](docs/load-test/reports/seckill-v22-1000-boundary/seckill.jtl)
+- [HTML 报告](docs/load-test/reports/seckill-v22-1000-boundary/html-report/index.html)
+- [SQL 核验结果](docs/load-test/reports/seckill-v22-1000-boundary/sql-verification.txt)
+- [运行汇总](docs/load-test/reports/seckill-v22-1000-boundary/run-summary.json)
+
+## 验证与边界
+
+- 已使用 JDK 8 运行 `mvn -o -DskipTests package` 完成离线打包验证。
+- 可靠性单测覆盖状态转换、重复恢复请求、迟到消息、数据库库存失败和发布结果分类；Redis 生命周期测试已在本机 `127.0.0.1:6379` 验证预扣留痕与幂等回补。
+- 该构建验证不替代 Redis、MySQL、RabbitMQ 联调，也不替代秒杀链路端到端测试。
+- 本轮压测数据仅适用于记录中的本机单实例和测试数据；简历或面试中应同时说明测试条件、JTL、HTML 报告和 SQL 核验结果。
 
 ## 来源
 

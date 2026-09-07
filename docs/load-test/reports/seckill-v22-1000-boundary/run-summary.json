@@ -1,0 +1,48 @@
+﻿{
+    "testTime":  "2026-09-07T21:08:44.9298495+08:00",
+    "voucherId":  22,
+    "testUserCount":  1000,
+    "preparedStock":  100,
+    "jmeter":  {
+                   "samples":  1000,
+                   "http200":  1000,
+                   "businessAccepted":  100,
+                   "expectedStockRejected":  900,
+                   "assertionErrorCount":  900,
+                   "allMeanMs":  598.76,
+                   "allP95Ms":  4291.95,
+                   "allP99Ms":  5238.78,
+                   "allMaxMs":  5363,
+                   "throughputPerSecond":  34.7379,
+                   "acceptedMeanMs":  4162.52,
+                   "acceptedP95Ms":  5330,
+                   "rejectedMeanMs":  202.78
+               },
+    "mysql":  {
+                  "finalStock":  0,
+                  "finalOrders":  100,
+                  "duplicateUsers":  0,
+                  "processTotal":  100,
+                  "processStatus":  "PERSISTED\t100",
+                  "publishStatus":  "CONFIRMED\t100",
+                  "ordersWithoutProcess":  0,
+                  "processWithoutOrder":  0,
+                  "deadLetters":  0
+              },
+    "redis":  {
+                  "seckillStock":  0,
+                  "orderSetCardinality":  100
+              },
+    "rabbitmq":  {
+                     "mainQueueMessages":  0,
+                     "mainQueueUnacked":  0,
+                     "deadLetterQueueMessages":  0,
+                     "queueAckTotal":  200,
+                     "queuePublishTotal":  200
+                 },
+    "artifacts":  {
+                      "jtl":  "docs/load-test/reports/seckill-v22-1000-boundary/seckill.jtl",
+                      "html":  "docs/load-test/reports/seckill-v22-1000-boundary/html-report/index.html",
+                      "summary":  "docs/load-test/reports/seckill-v22-1000-boundary/run-summary.json"
+                  }
+}

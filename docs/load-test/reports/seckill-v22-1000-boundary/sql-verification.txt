@@ -1,0 +1,46 @@
+﻿SQL verification for voucher_id=22, 100 users? no, 1000 test users; prepared stock=100
+final stock: 
+0
+final orders: 
+100
+duplicate users: 
+0
+process total: 
+100
+process status: 
+PERSISTED	100
+publish status: 
+CONFIRMED	100
+orders without process: 
+0
+process rows without order: 
+0
+dead letters: 
+0
+Redis stock: 
+0
+Redis order set cardinality: 
+100
+Rabbit main queue messages: 
+0
+Rabbit main queue unacked: 
+0
+Rabbit dead-letter messages: 
+0
+JMeter HTTP 200: 
+1000
+JMeter business accepted: 
+100
+JMeter expected stock rejected: 
+900
+JMeter assertion error count (expected business rejection): 
+900
+JMeter accepted mean ms: 
+4162.52
+JMeter accepted P95 ms: 
+5330
+JMeter all mean ms: 
+598.76
+JMeter all P95 ms: 
+4291.95
+

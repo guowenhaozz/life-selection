@@ -1,0 +1,11 @@
+﻿voucher_id=22
+test_user_min=1
+test_user_max=1004
+test_user_count=1000
+mysql_stock=100
+redis_stock_response=$3
+100
+redis_order_set_response=:0
+first_token_exists=:1
+last_token_exists=:1
+tokens_file=<local-only-token-file-not-committed>

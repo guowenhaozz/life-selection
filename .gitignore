@@ -39,3 +39,8 @@ src/test/java/com/hmdp/tokens.txt
 
 ### Local runtime configuration ###
 src/main/resources/application-local.yaml
+
+### Load-test outputs and credentials ###
+/artifacts/
+/jmeter.log
+**/tokens*.txt
